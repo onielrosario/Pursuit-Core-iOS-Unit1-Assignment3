@@ -83,7 +83,6 @@ while calculatorIsRunning {
             continue
         }
         var components = userInput2.components(separatedBy: " ")
-        print(components)
         
         guard components.count == 3 else {
             print("PLEASE ENTER A CORRECT OPERATION FORMAT!")
@@ -92,11 +91,19 @@ while calculatorIsRunning {
         }
         switch components[1] {
         case "?":
-            let userOperator = randomOpetators.randomElement()!
-            let firstNum = Double(components[0])!
-            let secNum = Double(components[2])!
+            var userOperator = randomOpetators.randomElement()!
+            guard let firstNum = Double(components[0]) else {
+                print("PLEASE ENTER CORRECT VALUES")
+                continue
+            }
+            guard let secNum = Double(components[2]) else {
+                print("PLEASE ENTER CORRECT VALUES")
+                continue
+            }
             if userOperator == "/" && secNum == 0 {
-                _ = randomOpetators[0]
+                userOperator = randomOpetators[0]
+            } else {
+                print("")
             }
             let mathFunction = mathStuffFactory(opString: userOperator)
             let result = mathFunction(firstNum,secNum)
@@ -114,12 +121,12 @@ while calculatorIsRunning {
                     print("PLEASE TRY AGAIN")
                     print("")
                     continue
+                } else {
+                    print("CORRECT!! YOU'VE USED '\(userOperator)'")
+                    print("")
+                    guessingLoop = false
                 }
-                print("CORRECT!! YOU'VE USED '\(userOperator)'")
-                print("")
-                guessingLoop = false
             }
-            
         default:
             guard randomOpetators.contains(components[1]) else {
                 print("PLEASE USE THE CORRECT OPERANT")
