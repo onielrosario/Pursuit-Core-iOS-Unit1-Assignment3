@@ -70,7 +70,7 @@ while calculatorIsRunning {
     print("ENTER TYPE OF CALCULATION")
     print("")
     print("1 (REGULAR)      2(HIGH ORDER)")
-    guard let userInput = readLine() else {
+    guard let userInput = readLine()?.lowercased() else {
         print("ERROR")
         print("")
         continue
@@ -79,7 +79,7 @@ while calculatorIsRunning {
     case "1":
         print("ENTER REGULAR OPERATION E.G:")
         print("5 + 2")
-        guard let userInput2 = readLine() else {
+        guard let userInput2 = readLine()?.lowercased() else {
             continue
         }
         var components = userInput2.components(separatedBy: " ")
@@ -111,7 +111,7 @@ while calculatorIsRunning {
                 print(result)
                 print("GUESS THE OPERATION")
                 print("")
-                guard let answer = readLine() else {
+                guard let answer = readLine()?.lowercased() else {
                     print("PLEASE ENTER A VALID OPERATOR")
                     continue
                 }
@@ -151,7 +151,7 @@ while calculatorIsRunning {
     case "2":
         print("ENTER YOUR HIGH ORDER OPERATION E.G:")
         print("FILTER 1,2,4,5,6,8 BY < 4")
-        guard let userInput2 = readLine() else {
+        guard let userInput2 = readLine()?.lowercased() else {
             continue
         }
         let components = userInput2.components(separatedBy: " ")
@@ -174,7 +174,7 @@ while calculatorIsRunning {
                 intArr.append(num)
             }
         }
-        guard components[2] == "by" || components[2] ==  "By" else {
+        guard components[2] == "by" else {
             print("PLEASE ENTER A CORRECT FORMAT")
             continue
         }
