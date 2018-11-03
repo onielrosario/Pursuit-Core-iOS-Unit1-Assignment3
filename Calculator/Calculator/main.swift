@@ -124,7 +124,7 @@ while calculatorIsRunning {
                 } else {
                     print("CORRECT!! YOU'VE USED '\(userOperator)'")
                     print("")
-                    guessingLoop = false
+                    break
                 }
             }
         default:
@@ -196,6 +196,10 @@ while calculatorIsRunning {
                 print(myFilter(inputArray: intArr) { (num) -> Bool in
                     return num > lastComponent
                 })
+            } else {
+                print("INVALID OPERATION")
+                print("")
+                continue
             }
             print("")
         case "reduce":
@@ -203,11 +207,14 @@ while calculatorIsRunning {
                 print(myReduce(arr: intArr, closure: { (num, num2) -> Int in
                     return num * num2
                 }, given: lastComponent))
-            }
-            if components[3] == "+" {
+            } else if components[3] == "+" {
                 print(myReduce(arr: intArr, closure: { (num, num2) -> Int in
                     return num + num2
                 }, given: lastComponent))
+            } else {
+                print("INVALID OPERATION")
+                print("")
+                continue
             }
             print("")
         case "map":
@@ -215,11 +222,14 @@ while calculatorIsRunning {
                 print(customMap(arr: intArr) { (num) -> Int in
                     return num * lastComponent
                 })
-            }
-            if components[3] == "/" {
+            } else if components[3] == "/" {
                 print(customMap(arr: intArr) { (num) -> Int in
                     return num / lastComponent
                 })
+            } else {
+                print("INVALID OPERATION")
+                print("")
+                continue
             }
             print("")
         default:
